@@ -6,15 +6,30 @@ import "./search.styles.scss";
 const Search = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
-  const { searchSymbols } = useContext(GlobalContext);
+  const { addSymbols } = useContext(GlobalContext);
 
   const onSubmit = (e) => {
     e.preventDefault();
 
-    const newSearch = {
-        searchTerm: searchTerm
+    const newStock = {
+        id: Math.floor(Math.random() * 100000000),
+        symbol: searchTerm,
+        details: {
+          actual_return: 0,
+          buy_value: 0,
+          currency: "USD",
+          current_price: 0,
+          dividen_rate: 0,
+          eps: 0,
+          exchange: "TEST",
+          growth: 0,
+          industry: "TEST",
+          longName: "Test",
+          roe: 0,
+          sector: "Test",
+        }
     }
-    searchSymbols(newSearch)
+    addSymbols(newStock)
 
     setSearchTerm('');
   };
@@ -27,7 +42,7 @@ const Search = () => {
             type="text"
             name="search field"
             value={searchTerm}
-            placeholder="Digita un simbolo per cercare..."
+            placeholder="Digita un simbolo per aggiungere..."
             onChange={(e) => setSearchTerm(e.target.value)}
           />
           <input name="submit" type="submit" />

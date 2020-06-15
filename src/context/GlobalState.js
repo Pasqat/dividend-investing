@@ -1,9 +1,10 @@
 import React, { createContext, useReducer } from "react";
 import AppReducer from "./AppReducer";
+import STOCK_DATA from './stock_data';
 
 // * Initial State
 const initialState = {
-  symbols: [],
+  symbols: STOCK_DATA,
 };
 
 //  * Create Context
@@ -14,28 +15,29 @@ export const GlobalProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AppReducer, initialState);
 
   // * Action
-  function getSymbols() {
-    dispatch({
-      type: "GET_SYMBOLS",
-      payload: "",
-    });
-  }
+//   function getSymbols() {
+//     dispatch({
+//       type: "GET_SYMBOLS",
+//       payload: "",
+//     });
+//   }
 
-  function searchSymbols(symbol) {
-      console.log(symbol, state);
+//   function searchSymbols(symbol) {
+//       console.log(symbol, state);
       
+//     dispatch({
+//       type: 'SEARCH_SYMBOLS',
+//       payload: symbol,
+//     });
+//   }
+
+  function deleteSymbols(symbol) {
     dispatch({
-      type: 'SEARCH_SYMBOLS',
+      type: "DELETE_SYMBOL",
       payload: symbol,
     });
   }
 
-  function deleteSymbols(id) {
-    dispatch({
-      type: "DELETE_SYMBOL",
-      payload: id,
-    });
-  }
   function addSymbols(symbol) {
     dispatch({
       type: "ADD_SYMBOL",
@@ -47,8 +49,8 @@ export const GlobalProvider = ({ children }) => {
     <GlobalContext.Provider
       value={{
         symbols: state.symbols,
-        getSymbols,
-        searchSymbols,
+        // getSymbols,
+        // searchSymbols,
         deleteSymbols,
         addSymbols,
       }}

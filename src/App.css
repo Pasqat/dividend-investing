@@ -9,4 +9,20 @@ body{
   background: linear-gradient(242.71deg, #081A27 0%, #0C293F 100%);
   padding: 0 4rem;
   font-family: Poppins;
+  min-height: 100vh;
+
+
+}
+
+.footer {
+
+  color: #B9F7FF;
+  margin-top: auto;
+  margin-bottom: 15px;
+}
+
+#root{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
