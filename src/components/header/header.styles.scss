@@ -1,0 +1,18 @@
+.header {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #1ae3ff;
+    .logo{
+        color: #1ae3ff;
+    }
+    .nav{
+        span{
+            cursor: pointer;
+            &:hover{
+                text-shadow: 0 0 10px #1ae3ff;
+            }
+        }
+    }
+}
