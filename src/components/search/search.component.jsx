@@ -31,9 +31,10 @@ const Search = () => {
             placeholder="Digita un simbolo per aggiungere..."
             onChange={(e) => setSearchTerm(e.target.value)}
           />
-          <input name="submit" type="submit" />
+         
+          { isLoading ? <div className='waiting'><span role='img'>💩</span></div> : <input name="submit" type="submit" />}
         </form>
-        { isLoading ? '💩' : ''}
+        
       </div>
     </div>
   );

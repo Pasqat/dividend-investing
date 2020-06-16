@@ -10,8 +10,8 @@ const StockDataNorm = (pisello) =>
 // * Initial State
 const initialState = {
   symbols: [],
-  watchlist: ["aapl"],
-  isLoading: true
+  watchlist: [],
+  isLoading: false
 };
 
 //  * Create Context
@@ -65,6 +65,8 @@ export const GlobalProvider = ({ children }) => {
   }
 
   function addSymbols(symbol) {
+
+    // TODO non devono esserci simboli duplicati
     dispatch({
       type: "ADD_SYMBOL",
       payload: symbol,
