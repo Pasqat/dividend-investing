@@ -11,7 +11,6 @@ import {
 
 export const StockItem = ({ stock }) => {
   const { deleteSymbols } = useContext(GlobalContext);
-  console.log(deleteSymbols, GlobalContext);
 
   const { id, symbol } = stock;
   const {
@@ -22,7 +21,7 @@ export const StockItem = ({ stock }) => {
     dividen_rate,
     buy_value,
     actual_return,
-  } = stock.details;
+  } = stock;
 
   const currencySymbol = (currency) => {
     if (currency === "EUR") {

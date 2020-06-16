@@ -1,14 +1,10 @@
 import styled from "styled-components";
 
-
 // TODO pare che non prenda i Props nel modo giusto
 const coloredPrice = (props) =>
   props.current_price > props.buy_value ? "color: #FF6A6A;" : "color: #A7FF7D;";
 
-
-const specialWidth = ({specialWidth}) => {
-    console.log(specialWidth);
-    
+const specialWidth = ({ specialWidth }) => {
   if (specialWidth === "large") {
     return "20%";
   } else if (specialWidth === "small") {
@@ -38,7 +34,7 @@ export const StockNumberStyle = styled.div`
   width: 13%;
   text-align: right;
 
-  &:last-child{
+  &:last-child {
     font-size: 24px;
     font-weight: 500;
     color: #000;
@@ -57,8 +53,8 @@ export const DeleteButton = styled.div`
   text-align: center;
   cursor: pointer;
 
-  &:hover{
-    color: #FF6A6A;
-    text-shadow: 0px 0px 5px #FF6A6A;
+  &:hover {
+    color: #ff6a6a;
+    text-shadow: 0px 0px 5px #ff6a6a;
   }
 `;

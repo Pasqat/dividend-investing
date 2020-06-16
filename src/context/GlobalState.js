@@ -1,10 +1,17 @@
 import React, { createContext, useReducer } from "react";
 import AppReducer from "./AppReducer";
-import STOCK_DATA from './stock_data';
+import axios from "axios";
+
+// * Nomrlaizing data
+
+const StockDataNorm = (pisello) =>
+  Object.keys(pisello).map((key) => pisello[key]);
 
 // * Initial State
 const initialState = {
-  symbols: STOCK_DATA,
+  symbols: [],
+  watchlist: ["aapl"],
+  isLoading: true
 };
 
 //  * Create Context
@@ -15,21 +22,40 @@ export const GlobalProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AppReducer, initialState);
 
   // * Action
-//   function getSymbols() {
-//     dispatch({
-//       type: "GET_SYMBOLS",
-//       payload: "",
-//     });
-//   }
+  async function getSymbols() {
+    const config = {
+      headers: {
+        Content_type: "application/json",
+      },
+    };
 
-//   function searchSymbols(symbol) {
-//       console.log(symbol, state);
-      
-//     dispatch({
-//       type: 'SEARCH_SYMBOLS',
-//       payload: symbol,
-//     });
-//   }
+    const reqWatchlist = { watchlist: state.watchlist };
+
+    try {
+      const res = await axios.post(
+        "http://localhost:5000/list",
+        reqWatchlist,
+        config
+      );
+
+      dispatch({
+        type: "GET_SYMBOLS",
+        payload: StockDataNorm(res.data),
+      });
+    } catch (err) {
+      console.log(err);
+      // TODO gestione dell'errore se inserisco un simbolo inesistente, se il server è down ecc
+    }
+  }
+
+  //   function searchSymbols(symbol) {
+  //       console.log(symbol, state);
+
+  //     dispatch({
+  //       type: 'SEARCH_SYMBOLS',
+  //       payload: symbol,
+  //     });
+  //   }
 
   function deleteSymbols(symbol) {
     dispatch({
@@ -49,6 +75,9 @@ export const GlobalProvider = ({ children }) => {
     <GlobalContext.Provider
       value={{
         symbols: state.symbols,
+        watchlist: state.watchlist,
+        isLoading: state.isLoading,
+        getSymbols,
         // getSymbols,
         // searchSymbols,
         deleteSymbols,
